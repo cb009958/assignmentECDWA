@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamStreamer - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>DreamStreamer</h1>
+        <input type="search" id="albumSearch" placeholder="Search albums...">
+    </header>
+    <nav>
+        <label for="artistFilter">Artist:</label>
+        <input type="text" id="artistFilter">
+        <label for="genreFilter">Genre:</label>
+        <select id="genreFilter">
+            <option value="">All Genres</option>
+            <option value="rock">Rock</option>
+            <option value="pop">Pop</option>
+        </select>
+        <label for="yearFilter">Year:</label>
+        <input type="number" id="yearFilter" min="1900" max="2024">
+    </nav>
+    <section id="albumsList">
+        <!-- Albums will be dynamically inserted here -->
+    </section>
+    <script src="home.js"></script>
+</body>
+</html>
