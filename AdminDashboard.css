@@ -1,0 +1,14 @@
+/* src/components/AdminDashboard.css */
+.admin-dashboard {
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.admin-dashboard h1 {
+    color: #333;
+}
+
+.admin-dashboard p {
+    color: #666;
+}

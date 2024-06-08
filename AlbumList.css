@@ -1,0 +1,31 @@
+/* src/components/AlbumList.css */
+.album-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.album-item {
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+}
+
+.album-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.album-item h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.album-item p {
+    color: #666;
+}

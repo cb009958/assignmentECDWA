@@ -1,0 +1,29 @@
+/* src/components/AdminAlbums.css */
+.admin-albums {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.admin-albums div {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-albums h3 {
+    color: #333;
+}
+
+.admin-albums button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-albums button:hover {
+    background-color: #0056b3;
+}

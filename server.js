@@ -2,46 +2,40 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-require('dotenv').config();  // Make sure to install dotenv: npm install dotenv
+
+const Album = require('./models/album');
+const Artist = require('./models/artist');
+const Genre = require('./models/genre');
+const Track = require('./models/track');
+const User = require('./models/user');
 
 const app = express();
-const port = process.env.PORT || 3000;  // Use the default port or 3000
+const port = 3000;
 
 // Database Connection
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,  // These options are for deprecation warnings
-    useCreateIndex: true
-}).then(() => {
-    console.log('MongoDB connected successfully');
-}).catch((err) => {
-    console.error('MongoDB connection error:', err);
+mongoose.connect('your_mongodb_connection_string', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
+
+app.use(cors());
+app.use(bodyParser.json());
+
+// Example Album Routes
+app.get('/albums', (req, res) => {
+  Album.find()
+    .then(albums => res.json(albums))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Middleware
-app.use(cors());  // Enables CORS
-app.use(bodyParser.json());  // Parses JSON requests
-
-// Routes
-const albumRoutes = require('./routes/albums');
-const artistRoutes = require('./routes/artists');
-const genreRoutes = require('./routes/genres');
-const trackRoutes = require('./routes/tracks');
-const userRoutes = require('./routes/users');
-
-app.use('/albums', albumRoutes);
-app.use('/artists', artistRoutes);
-app.use('/genres', genreRoutes);
-app.use('/tracks', trackRoutes);
-app.use('/users', userRoutes);
-
-// Root Route - Optional
-app.get('/', (req, res) => {
-    res.send('Welcome to the DreamStreamer API');
+app.post('/albums', (req, res) => {
+  const newAlbum = new Album(req.body);
+  newAlbum.save()
+    .then(() => res.json('Album added!'))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Start Server
+// Continue with other routes for artists, genres, tracks, users
+
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
