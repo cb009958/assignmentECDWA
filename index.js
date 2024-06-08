@@ -1,39 +1,17 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const express = require('express');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const AWS = require('aws-sdk');
-const app = express();
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-require('dotenv').config();
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION
-});
-
-const s3 = new AWS.S3();
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'testewda',
-    key: function (req, file, cb) {
-      cb(null, `${Date.now()}-${file.originalname}`); // Naming the file uniquely
-    }
-  })
-});
-
-app.post('/upload', upload.single('file'), (req, res) => {
-    res.send({
-      message: 'File uploaded successfully',
-      fileInfo: req.file
-    });
-  });
-
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-
-  
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
